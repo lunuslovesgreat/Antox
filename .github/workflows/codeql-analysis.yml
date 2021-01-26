@@ -62,9 +62,10 @@ jobs:
     - run: |
         ./download-dependencies.sh
         wget https://dl.google.com/android/repository/android-ndk-r20-linux-x86_64.zip
-        unzip android-ndk-r20-linux-x86_64.zip
-        ./gradlew assembleDebug assembleDebugAndroidTest app:lintDebug testDebug --scan
-        ##./gradlew clean build -x lint --parallel -Dorg.gradle.native=false --stacktrace || ./gradlew build -x lint --parallel -Dorg.gradle.native=false --stacktrace
+        mkdir -p /opt/android-sdk/ndk-bundle
+        unzip android-ndk-r20-linux-x86_64.zip -d /opt/android-sdk/ndk-bundle
+        ##./gradlew assembleDebug assembleDebugAndroidTest app:lintDebug testDebug --scan
+        ./gradlew clean build -x lint --parallel -Dorg.gradle.native=false --stacktrace || ./gradlew build -x lint --parallel -Dorg.gradle.native=false --stacktrace
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
