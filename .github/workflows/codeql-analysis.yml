@@ -60,8 +60,8 @@ jobs:
     #    uses a compiled language
 
     - run: |
-      ./download-dependencies.sh
-      ./gradlew build -x lint --parallel
+        ./download-dependencies.sh
+        ./gradlew build -x lint --parallel
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
