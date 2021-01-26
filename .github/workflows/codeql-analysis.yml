@@ -61,7 +61,7 @@ jobs:
 
     - run: |
         ./download-dependencies.sh
-        ./gradlew build -x lint --parallel
+        ./gradlew clean build -x lint --parallel -Dorg.gradle.native=false --stacktrace || ./gradlew build -x lint --parallel -Dorg.gradle.native=false --stacktrace
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
